@@ -1,48 +1,157 @@
-# Evaluacion1_MachineLearning
-Repositorio para el desarrollo de la evaluación 1 de Machine Learning grupo 4 
+# Informe del Proyecto de Machine Learning
 
-## 1. Descripción del problema de negocio y objetivos del proyecto
+## 1. Problema
 
-**Problema de Negocio:**
-En la competitiva industria musical actual, discográficas, productores y artistas independientes se enfrentan al desafío de comprender qué factores técnicos y acústicos determinan el éxito comercial de una pista en plataformas de streaming. Las decisiones basadas en intuición ya no son suficientes. Se requiere un enfoque analítico riguroso para identificar las características musicales que impulsan la "popularidad" de una canción, mitigando así el riesgo asociado a la inversión en producción y marketing.
+El objetivo del proyecto es desarrollar un modelo de Machine Learning capaz de predecir la variable **`popularity`** de canciones de Spotify a partir de sus características musicales y contextuales.
 
-**Objetivos del Proyecto:**
-* Ejecutar un Análisis Exploratorio de Datos (EDA) exhaustivo sobre el dataset de pistas musicales para descubrir patrones ocultos y relaciones acústicas clave.
-* Auditar y depurar la matriz de datos, solucionando inconsistencias, valores nulos y duplicados mediante criterios estadísticos y lógicos.
-* Estructurar un conjunto de datos limpio, validado y éticamente equilibrado, dejándolo en condiciones óptimas para el entrenamiento futuro de un algoritmo de Machine Learning predictivo.
+El análisis exploratorio muestra que la popularidad no presenta una relación lineal simple con las variables disponibles, por lo que se plantea estudiar posibles relaciones no lineales e interacciones mediante modelos de aprendizaje automático.
 
-## 2. Definición de KPIs para resolver el problema
+## 2. Objetivo
 
-Para medir la calidad de la etapa de preparación de datos y garantizar un modelamiento confiable, se han definido los siguientes Indicadores Clave de Desempeño (KPIs) de calidad de datos:
-* **Tasa de Completitud de Datos:** Reducir a menos del 5% la cantidad de valores nulos (NaN) en variables acústicas críticas mediante técnicas de imputación (media, mediana, moda) o eliminación justificada, preservando la validez algebraica de los algoritmos.
-* **Tasa de Duplicidad:** Lograr un 0% de pistas musicales duplicadas en el set final para evitar que el modelo de Machine Learning sufra de sobreajuste (*overfitting*).
-* **Tratamiento de Anomalías (Outliers):** Auditar el 100% de los valores extremos detectados en métricas (como la duración de la canción o los decibeles), diferenciando correctamente entre errores de sistema y realidades acústicas atípicas pero legítimas.
-* **Cumplimiento Ético (Fairness):** Validar que la purga de registros no elimine desproporcionadamente géneros musicales minoritarios o artistas subrepresentados, evitando así la introducción de sesgos o exclusión algorítmica.
+Construir un modelo predictivo que permita estimar la popularidad de una canción utilizando sus características disponibles en el dataset.
 
-## 3. Descripción de las fuentes de datos
+Como parte del proceso, se busca:
 
-* **Archivo Principal:** `Spotify_Tracks_Dataset.csv`
-* **Tipo de Datos:** Datos estructurados.
-* **Características del Dataset:** El conjunto se compone de una matriz tabular con filas correspondientes a pistas musicales y columnas que representan sus metadatos (como nombre y artista) e indicadores acústicos extraídos de la API de Spotify (ej. *danceability*, *energy*, *acousticness* y la variable objetivo: *popularity*).
-* **Herramientas de Colaboración:** El dataset original y depurado se resguarda dentro del directorio `data/` del repositorio. El equipo gestiona las versiones, revisiones (*code reviews*) y documentación de forma colaborativa mediante GitHub y Markdown para asegurar total transparencia y reproducibilidad técnica.
+* Comprender y explorar los datos.
+* Preparar las variables para Machine Learning.
+* Analizar correlaciones, redundancias y valores extremos.
+* Comparar escenarios con y sin valores atípicos.
+* Entrenar y evaluar modelos predictivos.
 
-## 4. Preparación y análisis exploratorio de datos (EDA)
+## 3. Flujo de trabajo: CRISP-DM
 
-El EDA actúa como una auditoría clínica de obligatoria ejecución para comprender el comportamiento intrínseco de las pistas musicales antes de aplicar cualquier aproximación algorítmica:
+El proyecto sigue la metodología **CRISP-DM**, estructurando el trabajo en las siguientes etapas:
 
-**A. Preparación (Data Cleaning):**
-* Inicialización del entorno con librerías estadísticas en Python (Pandas, Numpy, Matplotlib, Seaborn).
-* Tratamiento de valores faltantes (NaN) y depuración exhaustiva de registros duplicados que pudieran contaminar el entrenamiento del modelo.
+1. **Business Understanding:** definición del problema y objetivo de predicción.
+2. **Data Understanding:** exploración del dataset, variables, distribuciones, correlaciones y valores extremos.
+3. **Data Preparation:** limpieza, selección de variables, separación de entrenamiento y prueba, codificación y tratamiento de outliers.
+4. **Modeling:** entrenamiento de modelos de Machine Learning.
+5. **Evaluation:** evaluación y comparación del desempeño mediante métricas.
+6. **Deployment:** etapa considerada como futura, fuera del alcance actual.
 
-**B. Exploración Visual (EDA):**
-* **Análisis Univariado:** Examen detallado de distribuciones, tipos de variables y el rango de la popularidad mediante histogramas y gráficos de caja (*boxplots*) para identificar valores atípicos.
-* **Análisis Bivariado y Correlaciones:** Trazado de mapas de calor (*heatmaps*) para revelar cómo interactúan las variables simultáneamente, exponiendo, por ejemplo, qué atributos de audio correlacionan más positivamente con el índice de popularidad.
-* **Auditoría Ética:** Evaluación exhaustiva de sesgos de confirmación o muestreo. Se reconoce que la recolección de datos no es neutral y se aplican criterios para no amplificar asimetrías históricas de la plataforma.
+Actualmente se han completado las tres primeras etapas.
 
-## 5. Metodología utilizada (CRISP-DM)
+## 4. Fuente y características de los datos
 
-Este proyecto se desarrolla alineado al estándar de la industria **CRISP-DM** (Cross-Industry Standard Process for Data Mining), cubriendo en esta etapa las tres primeras fases críticas:
+El dataset contiene inicialmente **114.000 registros y 21 variables** relacionadas con canciones de Spotify.
 
-1. **Business Understanding (Comprensión del Negocio):** Se definió el problema crítico de la industria de la música para optimizar recursos analizando el éxito en Spotify, traduciéndolo en objetivos claros y KPIs analíticos medibles.
-2. **Data Understanding (Comprensión de los Datos):** Se procedió a cargar la matriz `Spotify_Tracks_Dataset.csv` y ejecutar el EDA para explorar las relaciones estructurales e identificar deficiencias.
-3. **Data Preparation (Preparación de los Datos):** Se aplicaron acciones estadísticas y éticas sobre los datos anómalos, duplicados y ausentes. El resultado es un dataset íntegro, balanceado y listo para ser ingresado exitosamente en la futura etapa de modelamiento (*Modeling*).
+Después de eliminar registros duplicados se obtuvieron **89.741 canciones únicas**, utilizando `track_id` como identificador.
+
+La variable objetivo es:
+
+* `popularity`: nivel de popularidad de la canción, con valores entre 0 y 100.
+
+## 5. Preparación de los datos
+
+Se separó la variable objetivo (`popularity`) de las variables predictoras.
+
+Se eliminaron identificadores y variables descriptivas de alta cardinalidad como `track_id`, `artists`, `album_name` y `track_name`, además de `Unnamed: 0`.
+
+También se eliminó `energy` debido a su alta relación con otras variables, principalmente `loudness` y `acousticness`, con el objetivo de reducir redundancia y simplificar el conjunto de predictores.
+
+Las variables utilizadas se dividieron en:
+
+* **Numéricas:** `duration_ms`, `danceability`, `loudness`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence` y `tempo`.
+* **Categóricas:** `explicit`, `key`, `mode`, `time_signature` y `track_genre`.
+
+## 6. Análisis exploratorio
+
+Se analizaron distribuciones, correlaciones, géneros musicales y valores extremos.
+
+Las correlaciones de Spearman con `popularity` fueron débiles, con una asociación máxima cercana a **0,13**. Esto indica que ninguna variable individual explica por sí sola la popularidad y justifica el uso de un enfoque multivariable.
+
+También se identificó una alta relación entre algunas variables predictoras, destacando `energy` con `loudness` y `acousticness`.
+
+## 7. Tratamiento de valores extremos
+
+Se definieron dos escenarios para comparar posteriormente el desempeño de los modelos:
+
+### Escenario 1: Con outliers
+
+Se conservan los valores extremos, considerándolos observaciones potencialmente válidas del comportamiento real de las canciones.
+
+Las variables categóricas se transforman mediante **OneHotEncoder**, mientras que las variables numéricas mantienen sus valores originales.
+
+### Escenario 2: Sin outliers
+
+Se eliminan observaciones extremas mediante el método **IQR (1,5 × IQR)** aplicado sobre las variables numéricas.
+
+Los límites se calculan utilizando únicamente el conjunto de entrenamiento para evitar fuga de información. Posteriormente, se aplican los mismos límites al conjunto de prueba.
+
+En este escenario, las variables numéricas se estandarizan mediante **StandardScaler** y las categóricas mediante **OneHotEncoder**.
+
+## 8. Prevención de Data Leakage
+
+Para evitar fuga de información, primero se dividen los datos en **entrenamiento y prueba**.
+
+Las transformaciones y parámetros calculados a partir de los datos, como los límites del IQR y el escalamiento, se ajustan únicamente utilizando el conjunto de entrenamiento.
+
+De esta forma, el conjunto de prueba permanece independiente y permite realizar una evaluación más confiable.
+
+## 9. Indicadores (KPIs)
+
+Se consideran principalmente:
+
+* **Fuerza de asociación:** correlación de Spearman entre los predictores y `popularity`.
+* **Calidad de los datos:** reducción de 114.000 registros a 89.741 registros únicos.
+* **Preparación para Machine Learning:** correcta separación de variables, codificación, escalamiento cuando corresponde y prevención de Data Leakage.
+* **Desempeño del modelo:** posteriormente se utilizarán **MAE, RMSE y R²**.
+
+## 10. Próxima etapa
+
+El siguiente paso corresponde a la fase de **Modeling**, comenzando con un **DecisionTreeRegressor**.
+
+Se entrenará el mismo modelo en ambos escenarios —con y sin outliers— para comparar sus resultados bajo condiciones equivalentes.
+
+Posteriormente se realizará la **Evaluación**, utilizando MAE, RMSE y R², y se podrán ajustar hiperparámetros como `max_depth`, `min_samples_split` y `min_samples_leaf`.
+
+## 11. Conclusión
+
+El proyecto ha completado las etapas de **comprensión del negocio, comprensión de los datos y preparación de los datos** de CRISP-DM.
+
+El dataset fue depurado, explorado y preparado en dos escenarios diferenciados respecto a los valores extremos. La baja asociación individual entre las variables y `popularity` respalda la utilización de modelos capaces de capturar relaciones no lineales e interacciones.
+
+La siguiente etapa será entrenar y evaluar los modelos para determinar cuál escenario permite obtener mejores resultados predictivos.
+
+----------------------------------------------------------------
+
+FLUJO DE TRABAJO DEL PROYECTO
+│
+├── 1. Business Understanding
+│   └── Definir el problema y objetivo:
+│       Predecir la popularidad de canciones de Spotify.
+│
+├── 2. Data Understanding
+│   ├── Cargar y explorar los datos
+│   ├── Analizar variables y distribuciones
+│   ├── Identificar duplicados y valores faltantes
+│   ├── Analizar correlaciones
+│   └── Detectar valores extremos
+│
+├── 3. Data Preparation
+│   ├── Eliminar duplicados
+│   ├── Separar variable objetivo y predictores
+│   ├── Eliminar variables irrelevantes o redundantes
+│   ├── Dividir Train / Test
+│   │
+│   ├── Escenario A: CON OUTLIERS
+│   │   ├── Conservar valores extremos
+│   │   └── Aplicar OneHotEncoder a categóricas
+│   │
+│   └── Escenario B: SIN OUTLIERS
+│       ├── Detectar y eliminar outliers mediante IQR
+│       ├── Aplicar StandardScaler a numéricas
+│       └── Aplicar OneHotEncoder a categóricas
+│
+├── 4. Modeling
+│   └── Entrenar DecisionTreeRegressor
+│       en ambos escenarios.
+│
+├── 5. Evaluation
+│   ├── Comparar resultados
+│   ├── MAE
+│   ├── RMSE
+│   └── R²
+│
+└── 6. Deployment
+    └── Etapa futura, fuera del alcance actual.
